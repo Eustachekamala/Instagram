@@ -20,9 +20,6 @@ class _NavBarState extends State<NavBarWidget>{
                     icon: Icon(Icons.home),
                     label: 'Home'),
                 NavigationDestination(
-                    icon: Icon(Icons.search),
-                    label: 'Search'),
-                NavigationDestination(
                     icon: Icon(Icons.add_box),
                     label: 'Add'),
                 NavigationDestination(

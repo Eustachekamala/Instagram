@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram/views/widgets/hero_widget.dart';
 
 class HomePage extends StatefulWidget{
   const HomePage({super.key});
@@ -10,22 +11,13 @@ class HomePage extends StatefulWidget{
 class _HomePageState extends State<HomePage>{
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: Row(
-          mainAxisSize: MainAxisSize.min,
+    return Padding(
+        padding: EdgeInsets.all(20.0),
+        child: Column(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadiusGeometry.circular(100),
-            )
+            HeroWidget()
           ],
         ),
-      ),
-      body: Center(
-        child: Text(
-          'Home Page'
-        ),
-      ),
     );
   }
 }

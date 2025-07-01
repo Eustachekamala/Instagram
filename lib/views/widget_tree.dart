@@ -4,12 +4,11 @@ import 'package:instagram/views/pages/home_page.dart';
 import 'package:instagram/views/pages/profile_page.dart';
 import 'package:instagram/views/pages/add_page.dart';
 import 'package:instagram/views/pages/reels_page.dart';
-import 'package:instagram/views/pages/search_page.dart';
+import 'package:instagram/views/pages/settings_page.dart';
 import 'package:instagram/views/widgets/navbar_widget.dart';
 
 List<Widget> pages = [
   HomePage(),
-  SearchPage(),
   AddPage(),
   ReelsPage(),
   ProfilePage()
@@ -51,6 +50,14 @@ class WidgetTree extends StatelessWidget{
               onPressed: (){},
               icon: Icon(Icons.send)
           ),
+          IconButton(
+              onPressed: (){
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => SettingsPage(
+                    title: 'Settings',
+                )));
+              },
+              icon: Icon(Icons.settings))
         ],
         centerTitle: false,
       ),

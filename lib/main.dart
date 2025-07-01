@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram/data/notifiers.dart';
-import 'package:instagram/views/widget_tree.dart';
+import 'package:instagram/views/pages/welcome_page.dart';
 
 void main(){
   runApp(Instagram());
@@ -34,7 +34,7 @@ class _InstagramState extends State<Instagram>{
                 ),
                 brightness: isDarkMode ? Brightness.dark : Brightness.light,
             ),
-            home: WidgetTree(),
+            home: WelcomePage(),
             ),);
   }
 }
