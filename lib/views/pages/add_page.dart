@@ -10,10 +10,11 @@ class AddPage extends StatefulWidget{
 class _AddPageState extends State<AddPage>{
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("Adds Page"),
-      ),
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('Add Page')
+        ],
     );
   }
 }

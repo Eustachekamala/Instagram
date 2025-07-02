@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class ProfilePage extends StatefulWidget{
-  const ProfilePage({super.key});
+class SearchPage extends StatefulWidget{
+  const SearchPage({super.key});
 
   @override
-  State<StatefulWidget> createState() => _ProfilePageState();
+  State<StatefulWidget> createState() => _SearchPageState();
 }
 
-class _ProfilePageState extends State<ProfilePage>{
+class _SearchPageState extends State<SearchPage>{
   @override
   Widget build(BuildContext context) {
     return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Profile Page')
+          Text('Search Page')
         ],
     );
   }

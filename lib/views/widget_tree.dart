@@ -1,72 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:instagram/data/notifiers.dart';
-import 'package:instagram/views/pages/home_page.dart';
-import 'package:instagram/views/pages/profile_page.dart';
-import 'package:instagram/views/pages/add_page.dart';
-import 'package:instagram/views/pages/reels_page.dart';
-import 'package:instagram/views/pages/settings_page.dart';
-import 'package:instagram/views/widgets/navbar_widget.dart';
+import 'package:instagram/views/widget/navbar_widget.dart';
 
-List<Widget> pages = [
-  HomePage(),
-  AddPage(),
-  ReelsPage(),
-  ProfilePage()
-];
-
-class WidgetTree extends StatelessWidget{
+class WidgetTree extends StatefulWidget{
   const WidgetTree({super.key});
 
+  @override
+  State<StatefulWidget> createState() => _WidgetTreeState();
+}
+
+class _WidgetTreeState extends State<WidgetTree>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Instagram',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontStyle: FontStyle.italic,
-            fontSize: 30
-          ),
+            "Instagram",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24
+            )
         ),
+        centerTitle: false,
         actions: [
           IconButton(
               onPressed: (){
-                isDarkModeNotifier.value = !isDarkModeNotifier.value;
+                  isDarkModeNotifier.value = !isDarkModeNotifier.value;
               },
               icon: ValueListenableBuilder(
                   valueListenable: isDarkModeNotifier,
-                  builder: (context, isDarkMode, child){
+                  builder: (context, isDarkMode, child) {
                     return
-                      isDarkMode ? Icon(Icons.light_mode) : Icon(Icons.dark_mode);
-                  }
-              )
-          ),
+                      isDarkMode ? Icon(Icons.dark_mode) : Icon(Icons.light_mode);
+                  },)),
           IconButton(
               onPressed: (){},
-              icon: Icon(Icons.favorite_border)
-          ),
+              icon: Icon(Icons.favorite)),
           IconButton(
               onPressed: (){},
-              icon: Icon(Icons.send)
-          ),
-          IconButton(
-              onPressed: (){
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => SettingsPage(
-                    title: 'Settings',
-                )));
-              },
-              icon: Icon(Icons.settings))
+              icon: Icon(Icons.message)),
         ],
-        centerTitle: false,
       ),
-
-      body: ValueListenableBuilder(valueListenable: selectedPageNotifier,
+      body: ValueListenableBuilder(
+          valueListenable: selectedPageNotifier,
           builder: (context, selectedPage, child) {
             return pages[selectedPage];
           },),
-      bottomNavigationBar: NavBarWidget()
+      bottomNavigationBar: NavBar(),
     );
   }
 }
