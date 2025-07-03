@@ -10,7 +10,7 @@ class AddPage extends StatefulWidget{
 class _AddPageState extends State<AddPage>{
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text('Add Page')

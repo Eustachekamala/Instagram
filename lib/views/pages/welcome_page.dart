@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:instagram/views/widget_tree.dart';
+import 'package:instagram/views/pages/login_page.dart';
+import 'package:lottie/lottie.dart';
 
 class WelcomePage extends StatelessWidget{
   const WelcomePage({super.key});
@@ -9,27 +10,61 @@ class WelcomePage extends StatelessWidget{
     return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          FilledButton(
-            style: FilledButton.styleFrom(
-              backgroundColor: Colors.white,
-              foregroundColor: Colors.black,
-              textStyle: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+          Lottie.asset('assets/lotties/Splash.json'),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: FilledButton(
+              style: FilledButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black,
+                textStyle: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                minimumSize: Size(double.infinity, 40.0),
+                elevation: 4.0, // Add some shadow
               ),
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              elevation: 4.0, // Add some shadow
+              onPressed: () {
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => LoginPage()),
+                // );
+              },
+              child: Text('Get Started'),
             ),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => WidgetTree()),
-              );
-            },
-            child: Text('Get Started'),
+          ),
+          SizedBox(height: 10,),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.grey,
+                  foregroundColor: Colors.white,
+                  padding: EdgeInsetsGeometry.symmetric(horizontal: 24, vertical: 12),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  minimumSize: Size(double.infinity, 40.0)
+                ),
+                onPressed: (){
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
+                },
+                child: Text(
+                  'Login',
+                   style: TextStyle(
+                     color: Colors.white,
+                     fontSize: 16,
+                     fontWeight: FontWeight.bold,
+                   ),
+                )
+            ),
           )
         ],
     );
