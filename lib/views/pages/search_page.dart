@@ -10,11 +10,8 @@ class SearchPage extends StatefulWidget{
 class _SearchPageState extends State<SearchPage>{
   @override
   Widget build(BuildContext context) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('Search Page')
-        ],
+    return Center(
+      child: Text('Search Page'),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:instagram/data/constants.dart';
+import 'package:instagram/views/widget/post_item.dart';
+import 'package:instagram/views/widget/story_item.dart';
 
 class HomePage extends StatefulWidget{
   const HomePage({super.key});
@@ -9,6 +10,11 @@ class HomePage extends StatefulWidget{
 }
 
 class _HomePageState extends State<HomePage>{
+  bool _isLiked = false;
+  bool _isCommented = false;
+  bool _isShared = false;
+  bool _isBookmarked = false;
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -16,234 +22,156 @@ class _HomePageState extends State<HomePage>{
         padding: EdgeInsets.all(20.0),
         child: Column(
           children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
+            SizedBox(
+              height: 120,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                physics: BouncingScrollPhysics(),
+                child: Row(
                   children: [
-                    SizedBox(
-                      height: 100,
-                      width: 100,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100.0),
-                        child: Image.asset(
-                          'assets/images/Ankara.jpeg',
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                        ),
-                      ),
+                    StoryItem(
+                        imagePath: 'assets/images/Ankara.jpeg',
+                        username: 'Kids Outfit',
+                        isCurrentUserStory: true
                     ),
-                    SizedBox(height: 8,),
-                    Text(
-                        'Your Story',
-                         style: TextStyle(
-                           fontSize: 14,
-                           color: Colors.white30,
-                         ),
-                    )
-                  ],
-                ),
-                Column(
-                  children: [
-                    SizedBox(
-                      height: 100,
-                      width: 100,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100.0),
-                        child: Image.asset(
-                          'assets/images/Kids.jpeg',
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                        ),
-                      ),
+                    StoryItem(
+                        imagePath: 'assets/images/bg.jpg',
+                        username: 'Apple',
+                        isCurrentUserStory: false
                     ),
-                    SizedBox(height: 8,),
-                    Text(
-                      'Angellah',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.white,
-                      ),
-                    )
-                  ],
-                ),
-                Column(
-                  children: [
-                    SizedBox(
-                      height: 100,
-                      width: 100,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100.0),
-                        child: Image.asset(
-                          'assets/images/Lasaky.jpeg',
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                        ),
-                      ),
+                    StoryItem(
+                        imagePath: 'assets/images/Kids.jpeg',
+                        username: 'Annah',
+                        isCurrentUserStory: false
                     ),
-                    SizedBox(height: 8,),
-                    Text(
-                      'Sarah',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.white,
-                      ),
-                    )
-                  ],
+                    StoryItem(
+                        imagePath: 'assets/images/Lasaky.jpeg',
+                        username: 'Jennifer',
+                        isCurrentUserStory: false
+                    ),
+                    StoryItem(
+                        imagePath: 'assets/images/ace.jpg',
+                        username: 'Ace',
+                        isCurrentUserStory: false
+                    ),
+                    StoryItem(
+                        imagePath: 'assets/images/cord.jpg',
+                        username: 'Mark',
+                        isCurrentUserStory: false
+                    ),
+                    StoryItem(
+                        imagePath: 'assets/images/michael.jpg',
+                        username: 'Michael',
+                        isCurrentUserStory: false
+                    ),
+                    StoryItem(
+                        imagePath: 'assets/images/shalom.jpg',
+                        username: 'Shalom',
+                        isCurrentUserStory: false
+                    ),
+                  ]
                 ),
-
-              ],
+              ),
             ),
             SizedBox(height: 20,),
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.symmetric(horizontal: 8),
               child: Column(
                 children: [
-                  Card(
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                                'Kids outfit',
-                                style: KTStyle.titleStyle
-                            ),
-                            SizedBox(height: 10,),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(20.0),
-                              child: Image.asset(
-                                'assets/images/Ankara.jpeg',
-                                fit: BoxFit.cover,
-                                width: double.infinity,
-                              ),
-                            ),
-                            SizedBox(height: 10,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                // Group for like, comment, send
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(Icons.favorite, color: Colors.red, size: 24),
-                                    SizedBox(width: 4),
-                                    Text('1223', style: TextStyle(fontSize: 12)),
-                                    SizedBox(width: 16),
-                                    Icon(Icons.comment_outlined, size: 24),
-                                    SizedBox(width: 4),
-                                    Text('20', style: TextStyle(fontSize: 12)),
-                                    SizedBox(width: 16),
-                                    Icon(Icons.send_outlined, size: 24),
-                                    SizedBox(width: 4),
-                                    Text('120', style: TextStyle(fontSize: 12)),
-                                  ],
-                                ),
-                                Icon(Icons.bookmark_border_outlined, size: 24,),
-                              ],
-                            )
-                          ]
-                      ),
-                    ),
+                  PostItem(
+                      imagePath: 'assets/images/Ankara.jpeg',
+                      userProfileImageUrl: 'assets/images/Ankara.jpeg',
+                      username: 'Kids Fashion',
+                      caption: 'Adorable new arrivals!',
+                      commentsCount: '1234',
+                      likesCount: '390',
+                      sharesCount: '30',
+                      isLiked: false,
+                      isBookmarked: false,
+                      onLikePressed: () {
+                        setState(() {
+                          _isLiked = !_isLiked;
+                        });
+                      },
+                      onCommentPressed: () {
+                        setState(() {
+                          _isCommented = !_isCommented;
+                        });
+                      },
+                      onBookmarkPressed: (){
+                        setState(() {
+                          _isBookmarked = !_isBookmarked;
+                        });
+                      },
+                      onSendPressed: () {
+                        setState(() {
+                          _isShared = !_isShared;
+                        });
+                      },
                   ),
-                  SizedBox(height: 20,),
-                  Card(
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                                'Kids outfit',
-                                style: KTStyle.titleStyle
-                            ),
-                            SizedBox(height: 10,),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(20.0),
-                              child: Image.asset(
-                                'assets/images/Kids.jpeg',
-                                fit: BoxFit.cover,
-                                width: double.infinity,
-                              ),
-                            ),
-                            SizedBox(height: 10,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                // Group for like, comment, send
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(Icons.favorite, color: Colors.red, size: 24),
-                                    SizedBox(width: 4),
-                                    Text('427', style: TextStyle(fontSize: 12)),
-                                    SizedBox(width: 16),
-                                    Icon(Icons.comment_outlined, size: 24),
-                                    SizedBox(width: 4),
-                                    Text('30', style: TextStyle(fontSize: 12)),
-                                    SizedBox(width: 16),
-                                    Icon(Icons.send_outlined, size: 24),
-                                    SizedBox(width: 4),
-                                    Text('126', style: TextStyle(fontSize: 12)),
-                                  ],
-                                ),
-                                Icon(Icons.bookmark_border_outlined, size: 24,),
-                              ],
-                            )
-                          ]
-                      ),
-                    ),
+                  PostItem(
+                    imagePath: 'assets/images/Kids.jpeg',
+                    userProfileImageUrl: 'assets/images/Kids.jpeg',
+                    username: 'Trendy Kids',
+                    caption: 'Cool outfits for cool kids.',
+                    commentsCount: '1234',
+                    likesCount: '390',
+                    sharesCount: '30',
+                    isLiked: false,
+                    isBookmarked: false,
+                    onLikePressed: () {
+                      setState(() {
+                        _isLiked = !_isLiked;
+                      });
+                    },
+                    onCommentPressed: () {
+                      setState(() {
+                        _isCommented = !_isCommented;
+                      });
+                    },
+                    onBookmarkPressed: (){
+                      setState(() {
+                        _isBookmarked = !_isBookmarked;
+                      });
+                    },
+                    onSendPressed: () {
+                      setState(() {
+                        _isShared = !_isShared;
+                      });
+                    },
                   ),
-                  SizedBox(height: 20,),
-                  Card(
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                                'Women outfit',
-                                style: KTStyle.titleStyle
-                            ),
-                            SizedBox(height: 10,),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(20.0),
-                              child: Image.asset(
-                                'assets/images/Lasaky.jpeg',
-                                fit: BoxFit.cover,
-                                width: double.infinity,
-                              ),
-                            ),
-                            SizedBox(height: 10,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                // Group for like, comment, send
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(Icons.favorite, color: Colors.red, size: 24),
-                                    SizedBox(width: 4),
-                                    Text('123', style: TextStyle(fontSize: 12)),
-                                    SizedBox(width: 16),
-                                    Icon(Icons.comment_outlined, size: 24),
-                                    SizedBox(width: 4),
-                                    Text('230', style: TextStyle(fontSize: 12)),
-                                    SizedBox(width: 16),
-                                    Icon(Icons.send_outlined, size: 24),
-                                    SizedBox(width: 4),
-                                    Text('12', style: TextStyle(fontSize: 12)),
-                                  ],
-                                ),
-                                Icon(Icons.bookmark_border_outlined, size: 24,),
-                              ],
-                            )
-                          ]
-                      ),
-                    ),
+                  PostItem(
+                    imagePath: 'assets/images/Lasaky.jpeg',
+                    userProfileImageUrl: 'assets/images/Lasaky.jpeg',
+                    username: 'Chic Women',
+                    caption: 'Latest in women\'s fashion.',
+                    commentsCount: '1234',
+                    likesCount: '390',
+                    sharesCount: '30',
+                    isLiked: false,
+                    isBookmarked: false,
+                    onLikePressed: () {
+                      setState(() {
+                        _isLiked = !_isLiked;
+                      });
+                    },
+                    onCommentPressed: () {
+                      setState(() {
+                        _isCommented = !_isCommented;
+                      });
+                    },
+                    onBookmarkPressed: (){
+                      setState(() {
+                        _isBookmarked = !_isBookmarked;
+                      });
+                    },
+                    onSendPressed: () {
+                      setState(() {
+                        _isShared = !_isShared;
+                      });
+                    },
                   )
-                ],
+                ]
               ),
             )
           ],
