@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram/views/pages/login_page.dart';
+import 'package:instagram/views/pages/register_page.dart';
 import 'package:lottie/lottie.dart';
 
 class WelcomePage extends StatelessWidget{
@@ -34,10 +35,10 @@ class WelcomePage extends StatelessWidget{
                     elevation: 4.0, // Add some shadow
                   ),
                   onPressed: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => LoginPage()),
-                    // );
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => RegisterPage()),
+                    );
                   },
                   child: Text('Get Started'),
                 ),
@@ -56,7 +57,7 @@ class WelcomePage extends StatelessWidget{
                         minimumSize: Size(double.infinity, 40.0)
                     ),
                     onPressed: (){
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => LoginPage()),
                       );

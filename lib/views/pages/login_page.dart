@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:instagram/views/pages/home_page.dart';
+import 'package:instagram/views/pages/register_page.dart';
 import 'package:instagram/views/widget_tree.dart';
 
 class LoginPage extends StatefulWidget{
@@ -13,8 +15,9 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController controllerEmail = TextEditingController();
   TextEditingController controllerPassword = TextEditingController();
 
-  String confirmedEmail = '123';
-  String confirmedPassword = '456';
+  String confirmedEmail = 'eustachekamala@gmail.com';
+  String confirmedPassword = '123456';
+  String confirmedUsername = 'Eustache Kamala';
 
   @override
   void dispose() {
@@ -62,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                                 borderRadius: BorderRadius.circular(15),
                               ),
                               labelText: 'Email',
-                              hintText: 'Enter your email',
+                              hintText: 'Enter your email or username',
                               prefixIcon: Icon(Icons.person),
                             ),
                           ),
@@ -80,25 +83,59 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           SizedBox(height: 20,),
-                          FilledButton(
-                            onPressed: () {
-                              onLoginPressed();
-                            },
-                            style: FilledButton.styleFrom(
-                              minimumSize: Size.fromHeight(50),
-                              backgroundColor: Colors.white30,
-                              textStyle: TextStyle(
-                                fontSize: 16,
-                              ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            child: TextButton(
+                                style: TextButton.styleFrom(
+                                    backgroundColor: Colors.grey,
+                                    foregroundColor: Colors.white,
+                                    padding: EdgeInsetsGeometry.symmetric(horizontal: 24, vertical: 12),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    minimumSize: Size(double.infinity, 40.0)
+                                ),
+                                onPressed: (){
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => WidgetTree()),
+                                  );
+                                },
+                                child: Text(
+                                  'Login',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
                             ),
-                            child: Text(
-                                'Login',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
+                          ),
+                          SizedBox(height: 10,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                  'Don\'t have an account?'
                               ),
-                            ),
-                          )
+                              SizedBox(width: 5,),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => RegisterPage())
+                                  );
+                                },
+                                child: Text(
+                                  'Register',
+                                  style: TextStyle(
+                                    color: Colors.blue,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ],
                       ),
                     )
@@ -112,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
   void onLoginPressed(){
-    if(controllerEmail.text == confirmedEmail && controllerPassword.text == confirmedPassword){
+    if(controllerEmail.text == confirmedEmail || controllerEmail.text == confirmedUsername && controllerPassword.text == confirmedPassword){
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => WidgetTree()),
