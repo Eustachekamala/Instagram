@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram/views/pages/login_page.dart';
+import 'package:instagram/views/pages/onboarding.dart';
 import 'package:instagram/views/pages/register_page.dart';
 import 'package:lottie/lottie.dart';
 
@@ -37,7 +38,7 @@ class WelcomePage extends StatelessWidget{
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => RegisterPage()),
+                      MaterialPageRoute(builder: (context) => OnboardingPage(title: 'default')),
                     );
                   },
                   child: Text('Get Started'),
@@ -59,7 +60,7 @@ class WelcomePage extends StatelessWidget{
                     onPressed: (){
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
+                        MaterialPageRoute(builder: (context) => LoginPage(title: 'Login',)),
                       );
                     },
                     child: Text(

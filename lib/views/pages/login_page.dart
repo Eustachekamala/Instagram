@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:instagram/views/pages/home_page.dart';
 import 'package:instagram/views/pages/register_page.dart';
 import 'package:instagram/views/widget_tree.dart';
 
 class LoginPage extends StatefulWidget{
-  const LoginPage({super.key});
+  const LoginPage({
+    super.key,
+    required this.title
+  });
+
+  final String title;
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -18,6 +22,8 @@ class _LoginPageState extends State<LoginPage> {
   String confirmedEmail = 'eustachekamala@gmail.com';
   String confirmedPassword = '123456';
   String confirmedUsername = 'Eustache Kamala';
+
+  bool _isPasswordObscured = true;
 
   @override
   void dispose() {
@@ -72,14 +78,23 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(height: 20,),
                           TextField(
                             controller: controllerPassword,
-                            obscureText: true,
+                            obscureText: _isPasswordObscured,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),
                               labelText: 'Password',
                               prefixIcon: Icon(Icons.lock),
-                              suffixIcon: Icon(Icons.remove_red_eye),
+                              suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _isPasswordObscured = !_isPasswordObscured;
+                                    });
+                                  },
+                                  icon: Icon(
+                                    _isPasswordObscured ? Icons.visibility : Icons.visibility_off,
+                                  )
+                              )
                             ),
                           ),
                           SizedBox(height: 20,),
@@ -96,13 +111,14 @@ class _LoginPageState extends State<LoginPage> {
                                     minimumSize: Size(double.infinity, 40.0)
                                 ),
                                 onPressed: (){
-                                  Navigator.push(
+                                  Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(builder: (context) => WidgetTree()),
+                                        (Route<dynamic> route) => false,
                                   );
                                 },
                                 child: Text(
-                                  'Login',
+                                  widget.title,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,

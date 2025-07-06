@@ -17,6 +17,8 @@ class _RegisterPageState extends State<RegisterPage> {
   String confirmedPassword = '123456';
   String confirmedUsername = 'Eustache Kamala';
 
+  bool _isPasswordObscured = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +52,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   labelText: 'Username',
                   hintText: 'Enter your username',
+                  prefixIcon: Icon(Icons.person),
                 ),
               ),
               SizedBox(height: 20,),
@@ -61,18 +64,30 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   labelText: 'Email',
                   hintText: 'Enter your email',
+                  prefixIcon: Icon(Icons.email)
                 ),
               ),
               SizedBox(height: 20,),
               TextField(
                 controller: controllerPassword,
-                obscureText: true,
+                obscureText: _isPasswordObscured,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
                   labelText: 'Password',
                   hintText: 'Enter your password',
+                  prefixIcon: Icon(Icons.lock),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _isPasswordObscured = !_isPasswordObscured;
+                      });
+                    },
+                    icon: Icon(
+                      _isPasswordObscured ? Icons.visibility : Icons.visibility_off,
+                    ),
+                  )
                 ),
               ),
               SizedBox(height: 20,),
@@ -91,7 +106,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     onPressed: (){
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
+                        MaterialPageRoute(builder: (context) => LoginPage(title: 'Login',)),
                       );
                     },
                     child: Text(
@@ -114,7 +129,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginPage())
+                        MaterialPageRoute(builder: (context) => LoginPage(title: 'Login',))
                       );
                     },
                     child: Text(
@@ -140,7 +155,7 @@ class _RegisterPageState extends State<RegisterPage> {
         controllerPassword.text == confirmedPassword){
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => LoginPage()),
+        MaterialPageRoute(builder: (context) => LoginPage(title: 'Login',)),
       );
     }
   }
