@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:instagram/views/pages/register_page.dart';
-import 'package:instagram/views/widget_tree.dart';
 import 'package:lottie/lottie.dart';
 
 class OnboardingPage extends StatelessWidget{

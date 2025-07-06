@@ -11,6 +11,10 @@ class HomePage extends StatefulWidget{
 
 class _HomePageState extends State<HomePage>{
   bool _isLiked = false;
+  int _postLikedCount = 0;
+  int _postCommentedCount = 0;
+  int _postSharedCount = 0;
+  int _postBookmarkedCount = 0;
   bool _isCommented = false;
   bool _isShared = false;
   bool _isBookmarked = false;
@@ -83,30 +87,107 @@ class _HomePageState extends State<HomePage>{
                       userProfileImageUrl: 'assets/images/Ankara.jpeg',
                       username: 'Kids Fashion',
                       caption: 'Adorable new arrivals!',
-                      commentsCount: '1234',
-                      likesCount: '390',
-                      sharesCount: '30',
-                      isLiked: false,
-                      isBookmarked: false,
+                      commentsCount: _postCommentedCount.toString(),
+                      likesCount: _postLikedCount.toString(),
+                      sharesCount: _postSharedCount.toString(),
+                      isLiked: _isLiked,
+                      isBookmarked: _isBookmarked,
                       onLikePressed: () {
                         setState(() {
                           _isLiked = !_isLiked;
+                          if(_isLiked){
+                            _postLikedCount++;
+                          }else{
+                            _postLikedCount--;
+                          }
                         });
                       },
                       onCommentPressed: () {
                         setState(() {
                           _isCommented = !_isCommented;
+                          if(_isCommented){
+                            _postCommentedCount++;
+                          }else{
+                            _postCommentedCount--;
+                          }
                         });
                       },
                       onBookmarkPressed: (){
                         setState(() {
                           _isBookmarked = !_isBookmarked;
+                          if(_isBookmarked){
+                            _postBookmarkedCount++;
+                          }else{
+                            _postBookmarkedCount--;
+                          }
                         });
                       },
                       onSendPressed: () {
                         setState(() {
                           _isShared = !_isShared;
+                          if(_isShared){
+                            _postSharedCount++;
+                          }else{
+                            _postSharedCount--;
+                          }
                         });
+                      },
+                  ),
+                  ...List.generate(
+                      3,
+                      (index) {
+                        return
+                          PostItem(
+                            imagePath: 'assets/images/Kids.jpeg',
+                            userProfileImageUrl: 'assets/images/Kids.jpeg',
+                            username: 'Trendy Kids',
+                            caption: 'Cool outfits for cool kids.',
+                            commentsCount: _postCommentedCount.toString(),
+                            likesCount: _postLikedCount.toString(),
+                            sharesCount: _postSharedCount.toString(),
+                            isLiked: _isLiked,
+                            isBookmarked: _isBookmarked,
+                            onLikePressed: () {
+                              setState(() {
+                                _isLiked = !_isLiked;
+                                if(_isLiked){
+                                  _postLikedCount++;
+                                }else{
+                                  _postLikedCount--;
+                                }
+                              });
+                            },
+                            onCommentPressed: () {
+                              setState(() {
+                                _isCommented = !_isCommented;
+                                if(_isCommented){
+                                  _postCommentedCount++;
+                                }else{
+                                  _postCommentedCount--;
+                                }
+                              });
+                            },
+                            onBookmarkPressed: (){
+                              setState(() {
+                                _isBookmarked = !_isBookmarked;
+                                if(_isBookmarked){
+                                  _postBookmarkedCount++;
+                                }else{
+                                  _postBookmarkedCount--;
+                                }
+                              });
+                            },
+                            onSendPressed: () {
+                              setState(() {
+                                _isShared = !_isShared;
+                                if(_isShared){
+                                  _postSharedCount++;
+                                }else{
+                                  _postSharedCount--;
+                                }
+                              });
+                            },
+                          );
                       },
                   ),
                   PostItem(
@@ -114,29 +195,49 @@ class _HomePageState extends State<HomePage>{
                     userProfileImageUrl: 'assets/images/Kids.jpeg',
                     username: 'Trendy Kids',
                     caption: 'Cool outfits for cool kids.',
-                    commentsCount: '1234',
-                    likesCount: '390',
-                    sharesCount: '30',
-                    isLiked: false,
-                    isBookmarked: false,
+                    commentsCount: _postCommentedCount.toString(),
+                    likesCount: _postLikedCount.toString(),
+                    sharesCount: _postSharedCount.toString(),
+                    isLiked: _isLiked,
+                    isBookmarked: _isBookmarked,
                     onLikePressed: () {
                       setState(() {
                         _isLiked = !_isLiked;
+                        if(_isLiked){
+                          _postLikedCount++;
+                        }else{
+                          _postLikedCount--;
+                        }
                       });
                     },
                     onCommentPressed: () {
                       setState(() {
                         _isCommented = !_isCommented;
+                        if(_isCommented){
+                          _postCommentedCount++;
+                        }else{
+                          _postCommentedCount--;
+                        }
                       });
                     },
                     onBookmarkPressed: (){
                       setState(() {
                         _isBookmarked = !_isBookmarked;
+                        if(_isBookmarked){
+                          _postBookmarkedCount++;
+                        }else{
+                          _postBookmarkedCount--;
+                        }
                       });
                     },
                     onSendPressed: () {
                       setState(() {
                         _isShared = !_isShared;
+                        if(_isShared){
+                          _postSharedCount++;
+                        }else{
+                          _postSharedCount--;
+                        }
                       });
                     },
                   ),
@@ -145,29 +246,49 @@ class _HomePageState extends State<HomePage>{
                     userProfileImageUrl: 'assets/images/Lasaky.jpeg',
                     username: 'Chic Women',
                     caption: 'Latest in women\'s fashion.',
-                    commentsCount: '1234',
-                    likesCount: '390',
-                    sharesCount: '30',
-                    isLiked: false,
-                    isBookmarked: false,
+                    commentsCount: _postCommentedCount.toString(),
+                    likesCount: _postLikedCount.toString(),
+                    sharesCount: _postSharedCount.toString(),
+                    isLiked: _isLiked,
+                    isBookmarked: _isBookmarked,
                     onLikePressed: () {
                       setState(() {
                         _isLiked = !_isLiked;
+                        if(_isLiked){
+                          _postLikedCount++;
+                        }else{
+                          _postLikedCount--;
+                        }
                       });
                     },
                     onCommentPressed: () {
                       setState(() {
                         _isCommented = !_isCommented;
+                        if(_isCommented){
+                          _postCommentedCount++;
+                        }else{
+                          _postCommentedCount--;
+                        }
                       });
                     },
                     onBookmarkPressed: (){
                       setState(() {
                         _isBookmarked = !_isBookmarked;
+                        if(_isBookmarked){
+                          _postBookmarkedCount++;
+                        }else{
+                          _postBookmarkedCount--;
+                        }
                       });
                     },
                     onSendPressed: () {
                       setState(() {
                         _isShared = !_isShared;
+                        if(_isShared){
+                          _postSharedCount++;
+                        }else{
+                          _postSharedCount--;
+                        }
                       });
                     },
                   )

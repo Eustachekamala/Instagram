@@ -14,4 +14,9 @@ class KTStyle{
     fontSize: 16,
     fontWeight: FontWeight.normal
   );
+
+  static const countTextStyle = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.normal
+  );
 }

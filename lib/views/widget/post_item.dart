@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram/data/constants.dart';
 
 class PostItem extends StatelessWidget{
   final String imagePath;
@@ -34,6 +35,16 @@ class PostItem extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    // Determine text color based on theme brightness
+    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final Color textColor = isDarkMode ? Colors.white : Colors.black;
+    final Color subtitleColor = isDarkMode ? Colors.white70 : Colors.black87;
+    final Color iconColor = isDarkMode ? Colors.white70 : Colors.black54;
+
+    // Adjust KTStyle dynamically or ensure it's theme-aware
+    final titleStyle = KTStyle.titleStyle.copyWith(color: textColor);
+    final countTextStyle = KTStyle.countTextStyle.copyWith(color: subtitleColor);
+
     return Card(
       elevation: 4.0,
       margin: EdgeInsets.symmetric(vertical: 8.0),
@@ -57,10 +68,7 @@ class PostItem extends StatelessWidget{
                 SizedBox(width: 8.0),
                 Text(
                   username,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.0,
-                  ),
+                  style: titleStyle
                 ),
               ],
             ),
@@ -94,16 +102,16 @@ class PostItem extends StatelessWidget{
                   children: [
                     _ActionIcon(
                       icon: isLiked ? Icons.favorite : Icons.favorite_border,
+                      color: isLiked ? Colors.red : iconColor,
                       count: likesCount,
                       onTap: onLikePressed,
-                      textStyle: TextStyle(
-                        fontSize: 14.0,
-                      )
+                      textStyle: countTextStyle
                     ),
                     SizedBox(width: 20.0),
                     _ActionIcon(
                       icon: Icons.chat_bubble_outline,
                       count: commentsCount,
+                      color: iconColor,
                       onTap: onCommentPressed,
                       textStyle: TextStyle(
                         fontSize: 14.0,
@@ -113,6 +121,7 @@ class PostItem extends StatelessWidget{
                     _ActionIcon(
                       icon: Icons.send_outlined,
                       count: sharesCount,
+                      color: iconColor,
                       onTap: onSendPressed,
                       textStyle: TextStyle(
                         fontSize: 14.0,
@@ -139,7 +148,7 @@ class PostItem extends StatelessWidget{
   }
 }
 
-class _ActionIcon extends StatelessWidget{
+class _ActionIcon extends StatefulWidget{
   final IconData icon;
   final Color? color;
   final String count;
@@ -155,18 +164,19 @@ class _ActionIcon extends StatelessWidget{
   });
 
   @override
+  State<_ActionIcon> createState() => _ActionIconState();
+}
+
+class _ActionIconState extends State<_ActionIcon> {
+  @override
   Widget build(BuildContext context) {
    return GestureDetector(
-     onTap: onTap,
+     onTap: widget.onTap,
      child: Row(
        children: [
-         Icon(icon, color: color, size: 28,),
+         Icon(widget.icon, color: widget.color, size: 28,),
          SizedBox(width: 6,),
-         if(count.isEmpty)
-           Text(
-             count,
-             style: textStyle,
-           )
+         if (widget.count.isNotEmpty) Text(widget.count, style: widget.textStyle),
        ],
      )
    );
