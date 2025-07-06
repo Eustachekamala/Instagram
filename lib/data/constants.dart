@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+class KConstants{
+  static const String themeModeKey = 'themeMode';
+}
+
 class KTStyle{
   static const titleStyle = TextStyle(
     fontSize: 18,

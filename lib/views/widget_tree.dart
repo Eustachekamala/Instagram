@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:instagram/data/constants.dart';
 import 'package:instagram/data/notifiers.dart';
 import 'package:instagram/views/widget/navbar_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WidgetTree extends StatefulWidget{
   const WidgetTree({super.key});
@@ -25,8 +27,11 @@ class _WidgetTreeState extends State<WidgetTree>{
         centerTitle: false,
         actions: [
           IconButton(
-              onPressed: (){
-                  isDarkModeNotifier.value = !isDarkModeNotifier.value;
+              onPressed: () async {
+                isDarkModeNotifier.value = !isDarkModeNotifier.value;
+                final SharedPreferences prefs =
+                    await SharedPreferences.getInstance();
+                await prefs.setBool(KConstants.themeModeKey, isDarkModeNotifier.value);
               },
               icon: ValueListenableBuilder(
                   valueListenable: isDarkModeNotifier,

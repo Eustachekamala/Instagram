@@ -95,7 +95,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       );
                     },
                     child: Text(
-                      'Register',
+                      'Register                                                        ',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
