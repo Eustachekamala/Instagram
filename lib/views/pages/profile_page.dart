@@ -16,45 +16,156 @@ class _ProfilePageState extends State<ProfilePage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween, // Push logout to bottom
         children: [
-          Center(
-            child: Text(
-              'Profile Page Content',
-              style: TextStyle(fontSize: 18),
-            ),
-          ),
-
-          Row(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded( // Wrap TextButton with Expanded
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.grey[700], // Slightly darker grey
-                    foregroundColor: Colors.white,
-                    padding: EdgeInsets.symmetric(horizontal: 24, vertical: 15), // Increased vertical padding
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                    fixedSize: Size.fromHeight(50), // Or use padding to control height
-                  ),
-                  onPressed: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return WelcomePage();
-                        },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Stack(
+                    alignment: Alignment.bottomRight, // Align plus icon to bottom right
+                    children: [
+                      CircleAvatar(
+                        radius: 60, // Slightly smaller radius to accommodate the plus icon visually
+                        backgroundImage: AssetImage('assets/images/shalom.jpg'),
                       ),
-                          (Route<dynamic> route) => false, // Remove all previous routes
-                    );
-                  },
-                  child: Text(
-                    'Logout',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      Positioned(
+                        bottom: 0,
+                        right: 2,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.blue, // Or Theme.of(context).primaryColor
+                            shape: BoxShape.circle, // White border for separation
+                          ),
+                          child: InkWell( // Use InkWell for tap effect
+                            onTap: () {}, //ToDo later
+                            customBorder: CircleBorder(), // Match the shape for ripple effect
+                            child: Padding( // Add padding inside the container for the icon
+                              padding: EdgeInsets.all(4.0),
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                                size: 20, // Adjust size as needed
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Eustache Kamala',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      SizedBox(height: 8),
+                      Row(
+                        children: [
+                          Column(
+                            children: [
+                              Text(
+                                '100',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              SizedBox(height: 8),
+                              Text(
+                                'posts',
+                                style: TextStyle(fontSize: 14),
+                              ),
+                            ],
+                          ),
+                          SizedBox(width: 20),
+                          Column(
+                            children: [
+                              Text(
+                                '1200',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              SizedBox(height: 8),
+                              Text(
+                                'followers',
+                                style: TextStyle(fontSize: 14),
+                              ),
+                            ],
+                          ),
+                          SizedBox(width: 20),
+                          Column(
+                            children: [
+                              Text(
+                                '440',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              SizedBox(height: 8),
+                              Text(
+                                'following',
+                                style: TextStyle(fontSize: 14),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              SizedBox(height: 16,),
+              Text(
+                'Science, Technology, and Engineering',
+                style: TextStyle(fontSize: 16, color: Colors.grey),
+                textAlign: TextAlign.start,
+              ),
+              SizedBox(height: 16,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  TextButton(
+                    //ToDo later
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.white12,
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        minimumSize: Size(120, 40)
+                      ),
+                      child: Text('Edit Profile'),
+                  ),
+                  SizedBox(width: 10,),
+                  TextButton(
+                    //ToDo later
+                    onPressed: () {},
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.white12,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      minimumSize: Size(120, 40)
+                    ),
+                    child: Text('Share Profile'),
+                  ),
+                  SizedBox(width: 10,),
+                  TextButton(
+                    //ToDo later
+                    onPressed: () {},
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.white12,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      minimumSize: Size(120, 40)
+                    ),
+                    child: Text('Contact'),
+                  ),
+                ],
               )
             ],
-          )
+          ),
         ],
       ),
     );
