@@ -105,9 +105,15 @@ class _ProfilePageState extends State<ProfilePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  IconButton(icon: Icon(Icons.grid_on_outlined, size: 30), onPressed: () {}),
-                  IconButton(icon: Icon(Icons.movie_creation_outlined, size: 30), onPressed: () {}),
-                  IconButton(icon: Icon(Icons.assignment_ind_outlined, size: 30), onPressed: () {}),
+                  IconButton(
+                      icon: Icon(Icons.grid_on_outlined, size: 30),
+                      onPressed: () {}),
+                  IconButton(
+                      icon: Icon(Icons.movie_creation_outlined, size: 30),
+                      onPressed: () {}),
+                  IconButton(
+                      icon: Icon(Icons.assignment_ind_outlined, size: 30),
+                      onPressed: () {}),
                 ],
               ),
               Divider(height: 1), // Visual separator
