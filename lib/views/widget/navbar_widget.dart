@@ -38,7 +38,10 @@ class _NavBarState extends State<NavBar>{
               icon: Icon(Icons.add_box),
               label: "Add"),
           NavigationDestination(
-              icon: Icon(Icons.person),
+              icon: ClipRRect(
+                 borderRadius: BorderRadius.circular(100),
+                  child: Image.asset("assets/images/shalom.jpg",
+                    width: 30, height: 30, fit: BoxFit.cover,)),
               label: "Profile"),
         ],
           onDestinationSelected: (int value) {

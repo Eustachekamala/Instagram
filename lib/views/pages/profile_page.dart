@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:instagram/views/pages/welcome_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -9,165 +8,163 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  // Example list of post image paths
+  final List<String> postImagePaths = [
+    'assets/images/Ankara.jpeg',
+    'assets/images/Ankara.jpeg',
+    'assets/images/Ankara.jpeg',
+    'assets/images/Kids.jpeg',
+    'assets/images/Kids.jpeg',
+    'assets/images/Kids.jpeg',
+    'assets/images/michael.jpg',
+    'assets/images/michael.jpg',
+    'assets/images/michael.jpg',
+    'assets/images/shalom.jpg',
+    'assets/images/Ankara.jpeg',
+    'assets/images/Kids.jpeg',
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Padding( // Add some padding around the content
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween, // Push logout to bottom
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return Scaffold( // Added Scaffold for better structure if this is a full page
+      body: SingleChildScrollView( // Allow the entire profile to scroll
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start, // Align content to the start
             children: [
+              // --- Profile Header Row ---
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Stack(
-                    alignment: Alignment.bottomRight, // Align plus icon to bottom right
+                    alignment: Alignment.bottomRight,
                     children: [
                       CircleAvatar(
-                        radius: 60, // Slightly smaller radius to accommodate the plus icon visually
+                        radius: 50, // Adjusted radius
                         backgroundImage: AssetImage('assets/images/shalom.jpg'),
                       ),
                       Positioned(
                         bottom: 0,
-                        right: 2,
+                        right: 0,
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.blue, // Or Theme.of(context).primaryColor
-                            shape: BoxShape.circle, // White border for separation
+                            color: Colors.blue,
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Theme.of(context).scaffoldBackgroundColor, width: 2),
                           ),
-                          child: InkWell( // Use InkWell for tap effect
-                            onTap: () {}, //ToDo later
-                            customBorder: CircleBorder(), // Match the shape for ripple effect
-                            child: Padding( // Add padding inside the container for the icon
+                          child: InkWell(
+                            onTap: () { /* Add story logic */ },
+                            customBorder: CircleBorder(),
+                            child: Padding(
                               padding: EdgeInsets.all(4.0),
-                              child: Icon(
-                                Icons.add,
-                                color: Colors.white,
-                                size: 20, // Adjust size as needed
-                              ),
+                              child: Icon(Icons.add, color: Colors.white, size: 20),
                             ),
                           ),
                         ),
                       ),
                     ],
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Eustache Kamala',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                '100',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                              SizedBox(height: 8),
-                              Text(
-                                'posts',
-                                style: TextStyle(fontSize: 14),
-                              ),
-                            ],
-                          ),
-                          SizedBox(width: 20),
-                          Column(
-                            children: [
-                              Text(
-                                '1200',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                              SizedBox(height: 8),
-                              Text(
-                                'followers',
-                                style: TextStyle(fontSize: 14),
-                              ),
-                            ],
-                          ),
-                          SizedBox(width: 20),
-                          Column(
-                            children: [
-                              Text(
-                                '440',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                              SizedBox(height: 8),
-                              Text(
-                                'following',
-                                style: TextStyle(fontSize: 14),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ],
+                  SizedBox(width: 20),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Eustache Kamala', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                        SizedBox(height: 8),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            _buildStatColumn('100', 'Posts'),
+                            _buildStatColumn('1200', 'Followers'),
+                            _buildStatColumn('440', 'Following'),
+                          ],
+                        ),
+                      ],
+                    ),
                   )
                 ],
               ),
-              SizedBox(height: 16,),
+              SizedBox(height: 16),
               Text(
                 'Science, Technology, and Engineering',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
-                textAlign: TextAlign.start,
+                style: TextStyle(fontSize: 16, color: Colors.grey[700]),
               ),
-              SizedBox(height: 16,),
+              SizedBox(height: 16),
+              // --- Action Buttons ---
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  TextButton(
-                    //ToDo later
-                      onPressed: () {},
-                      style: TextButton.styleFrom(
-                        backgroundColor: Colors.white12,
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        minimumSize: Size(120, 40)
-                      ),
-                      child: Text('Edit Profile'),
-                  ),
-                  SizedBox(width: 10,),
-                  TextButton(
-                    //ToDo later
-                    onPressed: () {},
-                    style: TextButton.styleFrom(
-                      backgroundColor: Colors.white12,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      minimumSize: Size(120, 40)
-                    ),
-                    child: Text('Share Profile'),
-                  ),
-                  SizedBox(width: 10,),
-                  TextButton(
-                    //ToDo later
-                    onPressed: () {},
-                    style: TextButton.styleFrom(
-                      backgroundColor: Colors.white12,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      minimumSize: Size(120, 40)
-                    ),
-                    child: Text('Contact'),
-                  ),
+                  Expanded(child: _buildProfileButton('Edit Profile', () {})),
+                  SizedBox(width: 8),
+                  Expanded(child: _buildProfileButton('Share Profile', () {})),
+                  SizedBox(width: 8),
+                  Expanded(child: _buildProfileButton('Contact', () {})),
                 ],
-              )
+              ),
+              SizedBox(height: 16),
+              // --- Tab Icons (Posts, Reels, Tagged) ---
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(icon: Icon(Icons.grid_on_outlined, size: 30), onPressed: () {}),
+                  IconButton(icon: Icon(Icons.movie_creation_outlined, size: 30), onPressed: () {}),
+                  IconButton(icon: Icon(Icons.assignment_ind_outlined, size: 30), onPressed: () {}),
+                ],
+              ),
+              Divider(height: 1), // Visual separator
+
+              // --- Posts Grid ---
+              GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 2.0,
+                  mainAxisSpacing: 2.0,
+                  childAspectRatio: 1.0,
+                ),
+                itemCount: postImagePaths.length,
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () {
+                      print('Tapped on post: ${postImagePaths[index]}');
+                    },
+                    child: Image.asset(
+                      postImagePaths[index],
+                      fit: BoxFit.cover,
+                    ),
+                  );
+                },
+              ),
             ],
           ),
-        ],
+        ),
       ),
+    );
+  }
+
+  Widget _buildStatColumn(String count, String label) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(count, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        SizedBox(height: 4),
+        Text(label, style: TextStyle(fontSize: 14, color: Colors.grey[700])),
+      ],
+    );
+  }
+
+  Widget _buildProfileButton(String text, VoidCallback onPressed) {
+    return TextButton(
+      onPressed: onPressed,
+      style: TextButton.styleFrom(
+          backgroundColor: Colors.grey[300],
+          foregroundColor: Colors.black,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          padding: EdgeInsets.symmetric(vertical: 10)
+      ),
+      child: Text(text),
     );
   }
 }
