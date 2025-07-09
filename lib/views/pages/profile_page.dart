@@ -11,12 +11,12 @@ class _ProfilePageState extends State<ProfilePage> {
   // Example list of post image paths
   final List<String> postImagePaths = [
     'assets/images/Ankara.jpeg',
-    'assets/images/Ankara.jpeg',
-    'assets/images/Ankara.jpeg',
+    'assets/images/ace.jpg',
+    'assets/images/bg.jpg',
+    'assets/images/cord.jpg',
+    'assets/images/Lasaky.jpeg',
     'assets/images/Kids.jpeg',
-    'assets/images/Kids.jpeg',
-    'assets/images/Kids.jpeg',
-    'assets/images/michael.jpg',
+    'assets/images/dwayne.jpg',
     'assets/images/michael.jpg',
     'assets/images/michael.jpg',
     'assets/images/shalom.jpg',
@@ -116,7 +116,6 @@ class _ProfilePageState extends State<ProfilePage> {
                       onPressed: () {}),
                 ],
               ),
-              Divider(height: 1), // Visual separator
 
               // --- Posts Grid ---
               GridView.builder(
