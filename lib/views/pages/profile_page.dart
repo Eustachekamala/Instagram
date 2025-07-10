@@ -90,14 +90,21 @@ class _ProfilePageState extends State<ProfilePage> {
                 style: TextStyle(fontSize: 16, color: Colors.grey[700]),
               ),
               SizedBox(height: 16),
+
               // --- Action Buttons ---
               Row(
                 children: [
-                  Expanded(child: _buildProfileButton('Edit Profile', () {})),
+                  Expanded(child: _buildProfileButton('Edit Profile', () {
+                    // Todo Navigate to edit profile page
+                  })),
                   SizedBox(width: 8),
-                  Expanded(child: _buildProfileButton('Share Profile', () {})),
+                  Expanded(child: _buildProfileButton('Share Profile', () {
+                    // Todo Share profile logic
+                  })),
                   SizedBox(width: 8),
-                  Expanded(child: _buildProfileButton('Contact', () {})),
+                  Expanded(child: _buildProfileButton('Contact', () {
+                    // Todo Contact logic
+                  })),
                 ],
               ),
               SizedBox(height: 16),

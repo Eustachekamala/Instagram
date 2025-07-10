@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagram/data/constants.dart';
 import 'package:instagram/data/notifiers.dart';
+import 'package:instagram/views/pages/chat_page.dart';
 import 'package:instagram/views/widget/navbar_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -43,7 +44,15 @@ class _WidgetTreeState extends State<WidgetTree>{
               onPressed: (){},
               icon: Icon(Icons.favorite)),
           IconButton(
-              onPressed: (){},
+              onPressed: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                       return
+                         ChatPage();
+                    },)
+                );
+              },
               icon: Icon(Icons.message)),
         ],
       ),
