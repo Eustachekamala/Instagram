@@ -10,8 +10,24 @@ class SearchPage extends StatefulWidget{
 class _SearchPageState extends State<SearchPage>{
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Search Page'),
+    return Padding(
+      padding: EdgeInsets.all(20.0),
+      child: Column(
+        children: [
+          SearchBar(
+            onTap: () {
+
+            },
+            onChanged: (value) {},
+            hintText: "Search",
+            leading: Icon(Icons.search),
+            trailing: [
+              Icon(Icons.filter_list),
+              Icon(Icons.more_vert)
+            ],
+          )
+        ],
+      )
     );
   }
 }
