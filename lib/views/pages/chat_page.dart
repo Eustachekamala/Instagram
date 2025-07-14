@@ -26,20 +26,51 @@ class _ChatPageState extends State<ChatPage>{
       throw Exception('Failed to load activity');
     }
   }
-  
+  bool isFirst = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('Random Activity Viewer'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  isFirst = !isFirst;
+                });
+              },
+              icon: Icon(Icons.switch_access_shortcut))
+        ],
+      ),
       body: FutureBuilder(future: fetchActivity(), builder: (context, AsyncSnapshot snapshot) {
         if(snapshot.hasData){
-          return Text(snapshot.data!.activity);
+          Activity activity = snapshot.data;
+          return Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: AnimatedCrossFade(firstChild: Column(
+              children: [
+                Text(activity.activity),
+                Text(activity.type),
+                Text(activity.participants.toString()),
+                Text(activity.accessibility),
+                Text(activity.duration),
+                Text(activity.price.toString()),
+                Text(activity.link),
+              ],
+            ), secondChild: Center(
+              child: Image.asset('assets/images/Kids.jpeg'),
+            ), crossFadeState: isFirst ? CrossFadeState.showFirst : CrossFadeState.showSecond, duration: Duration(seconds: 1),)
+          );
         } else if(snapshot.hasError){
           return Center(
               child: Text('${snapshot.error}')
           );
         }
-        return Center(child: CircularProgressIndicator());
+        return Center(
+            child: CircularProgressIndicator(
+              color: Colors.white,
+            )
+        );
       },)
     );
   }
